@@ -13,7 +13,7 @@ const CONFIG = {
     twitterTexte: "@yoclesh",
   },
   // Pseudos qui défilent sur l'accueil (le 1er est le pseudo principal)
-  alias: ["Hiwamari", "Mawi", "Mowi", "Pwincess des fleurs"],
+  alias: ["Hiwamari", "Mawi", "Mowi", "Pwincess des fleurs", "HiwaMaStar", "HiwaMarmotte", "HiwamaForceuse"],
   musique: "assets/shadow.mp3",
   // Date/heure du dernier stream (heure locale) — pour le compteur sur l'accueil
   dernierStream: "2026-05-27T20:33:00",
