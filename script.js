@@ -12,6 +12,8 @@ const CONFIG = {
     twitter: "https://x.com/yoclesh",
     twitterTexte: "@yoclesh",
   },
+  // Pseudos qui défilent sur l'accueil (le 1er est le pseudo principal)
+  alias: ["Hiwamari", "Mawi", "Mowi", "Pwincess des fleurs"],
   musique: "assets/shadow.mp3",
   // Date/heure du dernier stream (heure locale) — pour le compteur sur l'accueil
   dernierStream: "2026-05-27T20:33:00",
@@ -51,7 +53,33 @@ function buildBackground() {
     petal.style.setProperty("--delay", `${Math.random() * 12}s`);
     frag.appendChild(petal);
   }
+  // Fleurs (5 pétales + cœur) qui dérivent, en plus des pétales
+  const blossomVariants = ["a", "b", "c"];
+  for (let i = 0; i < 12; i++) {
+    const b = makeBloom(blossomVariants[i % 3]);
+    b.style.setProperty("--bsize", `${18 + Math.round(Math.random() * 22)}px`);
+    b.style.left = `${Math.random() * 100}%`;
+    b.style.setProperty("--dur", `${14 + Math.random() * 12}s`);
+    b.style.setProperty("--delay", `${-Math.random() * 16}s`);
+    frag.appendChild(b);
+  }
   layer.appendChild(frag);
+}
+
+/* Fabrique une fleur (5 pétales + cœur) — réutilisée pour le fond et la carte */
+function makeBloom(variant) {
+  const b = document.createElement("div");
+  b.className = "blossom blossom--" + variant;
+  for (let p = 0; p < 5; p++) {
+    const petal = document.createElement("span");
+    petal.className = "blossom__petal";
+    petal.style.setProperty("--pa", `${p * 72}deg`);
+    b.appendChild(petal);
+  }
+  const core = document.createElement("span");
+  core.className = "blossom__core";
+  b.appendChild(core);
+  return b;
 }
 
 /* ---- Tournesol : génère les pétales des deux rangées ---- */
@@ -237,6 +265,32 @@ function populateArtist() {
   const link = $("#artistTwitter");
   link.href = CONFIG.artiste.twitter;
   link.textContent = CONFIG.artiste.twitterTexte;
+
+  // Emote du message des Flowy (sideye)
+  const flowyEmote = $("#flowyEmote");
+  if (flowyEmote && CONFIG.emotes && CONFIG.emotes.sideye) {
+    flowyEmote.addEventListener("error", () => { flowyEmote.style.display = "none"; }, { once: true });
+    flowyEmote.src = CONFIG.emotes.sideye;
+    flowyEmote.alt = "sideye";
+  }
+}
+
+/* Fleurs décoratives (même type que le fond) encadrant la carte « Message des Flowy » */
+function buildFlowyFlowers() {
+  const card = $("#flowyCard");
+  if (!card) return;
+  const specs = [
+    { cls: "fd--1", variant: "c" },
+    { cls: "fd--2", variant: "a" },
+    { cls: "fd--3", variant: "b" },
+    { cls: "fd--4", variant: "c" },
+  ];
+  specs.forEach((s) => {
+    const f = makeBloom(s.variant);
+    f.classList.add("deco-bloom", s.cls);
+    f.setAttribute("aria-hidden", "true");
+    card.appendChild(f);
+  });
 }
 
 // Précharge toutes les illustrations dès l'accueil (elles sont lourdes) :
@@ -383,11 +437,40 @@ function updateStreamCounter() {
 updateStreamCounter();
 setInterval(updateStreamCounter, 1000);
 
+/* ---- Pseudos qui défilent sur l'accueil ---- */
+const homeTitle = $("#homeTitle");
+function startTitleCycle() {
+  if (!homeTitle) return;
+  const aliases = Array.isArray(CONFIG.alias) && CONFIG.alias.length ? CONFIG.alias : null;
+  if (!aliases) return;
+  homeTitle.textContent = aliases[0];
+  if (prefersReducedMotion || aliases.length < 2) return; // pseudo statique
+  let i = 0;
+  setInterval(() => {
+    const out = homeTitle.animate(
+      [{ opacity: 1, transform: "translateY(0)" }, { opacity: 0, transform: "translateY(-20px)" }],
+      { duration: 340, easing: "ease-in", fill: "forwards" }
+    );
+    out.onfinish = () => {
+      i = (i + 1) % aliases.length;
+      homeTitle.textContent = aliases[i];
+      const inAnim = homeTitle.animate(
+        [{ opacity: 0, transform: "translateY(20px)" }, { opacity: 1, transform: "translateY(0)" }],
+        { duration: 380, easing: "ease-out", fill: "forwards" }
+      );
+      // Retire les fills pour revenir au style de base (sinon le fill de "out" garde le titre invisible)
+      inAnim.onfinish = () => { out.cancel(); inAnim.cancel(); };
+    };
+  }, 2800);
+}
+
 /* ---- Init ---- */
 buildBackground();
 buildSunflower();
 initAudio();
 populateArtist();
+buildFlowyFlowers();
 buildThumbs();
 preloadIllustrations();
 showIllu(0);
+startTitleCycle();

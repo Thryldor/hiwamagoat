@@ -1,0 +1,423 @@
+/* ============================================================
+   THÈMES — surcharge de style.css, scopée par data-theme.
+   Charger APRÈS style.css. Ne change que couleurs + fonds.
+   ARCHIVE des thèmes produits : le site applique l'un d'eux via
+   l'attribut data-theme sur <html> (actuellement "pop").
+   Pour changer : modifier data-theme dans index.html.
+   - data-theme absent / "nuit" : thème nuit d'origine (style.css)
+   - "clair"   : Floraison claire (crème -> rosé -> lavande)
+   - "petale"  : Soleil (jaune chaud -> rose)
+   - "lavande" : Brume (lilas clair -> rose)
+   - "pop"     : Rose/lavande saturé (APPLIQUÉ)
+   - "bonbon"  : Candy lilas/magenta
+   - "coucher" : Sunset jaune/pêche/rose vif
+   - "alien"   : Alien Isolation (blague, radar vert)
+   ============================================================ */
+
+/* =========================== CLAIR =========================== */
+html[data-theme="clair"] { --ink: #503C5B; --ink-soft: #6d5a78; --amber: #c98f3e; }
+
+html[data-theme="clair"] body {
+  color: var(--ink);
+  background: radial-gradient(125% 100% at 50% 0%, #FFFDF8 0%, #FDF1F6 52%, #F3E9FB 100%);
+}
+html[data-theme="clair"] .star {
+  background: radial-gradient(circle, var(--lavender), var(--pink));
+  opacity: 0.4; box-shadow: 0 0 5px rgba(212,125,238,0.45);
+}
+html[data-theme="clair"] .petal { opacity: 0.45; }
+html[data-theme="clair"] .sunflower--hero::before { background: radial-gradient(circle, rgba(212,125,238,0.22), transparent 68%); }
+html[data-theme="clair"] .home-title { color: var(--plum); text-shadow: 0 2px 18px rgba(212,125,238,0.35); }
+html[data-theme="clair"] .home-message { color: var(--blue); }
+html[data-theme="clair"] .home-message strong { color: var(--amber); }
+html[data-theme="clair"] .stream-counter { color: var(--blue); }
+html[data-theme="clair"] .enter-btn {
+  color: var(--plum); background: linear-gradient(90deg, var(--petal), #f7da9e);
+  box-shadow: 0 8px 22px rgba(213,66,108,0.22);
+}
+html[data-theme="clair"] .enter-btn:not(.is-dodging):hover { box-shadow: 0 10px 30px rgba(213,66,108,0.42); }
+html[data-theme="clair"] .sound-btn { background: rgba(255,255,255,0.78); color: var(--plum); border-color: var(--lavender); }
+html[data-theme="clair"] .stage {
+  background: #fff; border-color: var(--lavender);
+  box-shadow: 0 18px 50px rgba(80,60,91,0.18), inset 0 0 40px rgba(212,125,238,0.06);
+}
+html[data-theme="clair"] .stage.is-empty::after { color: var(--ink-soft); }
+html[data-theme="clair"] .thumb { background: #fff; }
+html[data-theme="clair"] .thumb.is-active { border-color: var(--pink); box-shadow: 0 0 12px rgba(213,66,108,0.45); }
+html[data-theme="clair"] .thumb__lock { color: var(--amber); background: radial-gradient(circle at 50% 38%, #fdeede, #f3e3fb); }
+html[data-theme="clair"] .thumb.is-locked { border-color: var(--lavender); }
+html[data-theme="clair"] .artist-card {
+  background: rgba(255,255,255,0.8); border-color: var(--lavender);
+  box-shadow: 0 18px 40px rgba(80,60,91,0.16), 0 0 26px rgba(212,125,238,0.18), inset 0 0 30px rgba(255,255,255,0.4);
+}
+html[data-theme="clair"] .artist-card__pp { border-color: var(--pink); }
+html[data-theme="clair"] .artist-card__name { color: var(--plum); }
+html[data-theme="clair"] .artist-card__link { color: var(--pink); }
+html[data-theme="clair"] .artist-card__link:hover { color: var(--plum); border-color: var(--pink); }
+
+/* =========================== PÉTALE (soleil) =========================== */
+html[data-theme="petale"] { --ink: #5b3a52; --ink-soft: #7a5a4a; --amber: #b9772b; }
+
+html[data-theme="petale"] body {
+  color: var(--ink);
+  background: radial-gradient(125% 100% at 50% 0%, #FFF7E6 0%, #FDEFD2 48%, #FCE3EC 100%);
+}
+html[data-theme="petale"] .star {
+  background: radial-gradient(circle, var(--petal), var(--pink));
+  opacity: 0.45; box-shadow: 0 0 5px rgba(239,197,130,0.55);
+}
+html[data-theme="petale"] .petal { opacity: 0.5; }
+html[data-theme="petale"] .sunflower--hero::before { background: radial-gradient(circle, rgba(239,197,130,0.35), transparent 66%); }
+html[data-theme="petale"] .home-title { color: var(--plum); text-shadow: 0 2px 16px rgba(239,197,130,0.5); }
+html[data-theme="petale"] .home-message { color: var(--amber); }
+html[data-theme="petale"] .home-message strong { color: var(--pink); }
+html[data-theme="petale"] .stream-counter { color: var(--amber); }
+html[data-theme="petale"] .enter-btn {
+  color: var(--white); background: linear-gradient(90deg, var(--pink), var(--lavender));
+  box-shadow: 0 8px 22px rgba(213,66,108,0.3);
+}
+html[data-theme="petale"] .enter-btn:not(.is-dodging):hover { box-shadow: 0 10px 32px rgba(213,66,108,0.5); }
+html[data-theme="petale"] .sound-btn { background: rgba(255,255,255,0.8); color: var(--amber); border-color: var(--petal); }
+html[data-theme="petale"] .stage {
+  background: #fffdf7; border-color: var(--petal);
+  box-shadow: 0 18px 50px rgba(120,80,40,0.18), inset 0 0 40px rgba(239,197,130,0.1);
+}
+html[data-theme="petale"] .stage.is-empty::after { color: var(--ink-soft); }
+html[data-theme="petale"] .thumb { background: #fffdf7; }
+html[data-theme="petale"] .thumb.is-active { border-color: var(--pink); box-shadow: 0 0 12px rgba(213,66,108,0.45); }
+html[data-theme="petale"] .thumb__lock { color: var(--amber); background: radial-gradient(circle at 50% 38%, #fdeecb, #fce0ea); }
+html[data-theme="petale"] .thumb.is-locked { border-color: var(--petal); }
+html[data-theme="petale"] .artist-card {
+  background: rgba(255,253,247,0.85); border-color: var(--petal);
+  box-shadow: 0 18px 40px rgba(120,80,40,0.16), 0 0 26px rgba(239,197,130,0.25), inset 0 0 30px rgba(255,255,255,0.4);
+}
+html[data-theme="petale"] .artist-card__pp { border-color: var(--pink); }
+html[data-theme="petale"] .artist-card__label { color: var(--amber); }
+html[data-theme="petale"] .artist-card__name { color: var(--plum); }
+html[data-theme="petale"] .artist-card__link { color: var(--pink); }
+html[data-theme="petale"] .artist-card__link:hover { color: var(--plum); border-color: var(--pink); }
+
+/* =========================== LAVANDE (brume) =========================== */
+html[data-theme="lavande"] { --ink: #3f3a63; --ink-soft: #5f5a7a; --amber: #c98f3e; }
+
+html[data-theme="lavande"] body {
+  color: var(--ink);
+  background: radial-gradient(125% 100% at 50% 0%, #F7F2FF 0%, #F0E6FB 50%, #FBEAF3 100%);
+}
+html[data-theme="lavande"] .star {
+  background: radial-gradient(circle, var(--lavender), #b98fe6);
+  opacity: 0.45; box-shadow: 0 0 6px rgba(212,125,238,0.5);
+}
+html[data-theme="lavande"] .petal { opacity: 0.4; }
+html[data-theme="lavande"] .sunflower--hero::before { background: radial-gradient(circle, rgba(212,125,238,0.28), transparent 68%); }
+html[data-theme="lavande"] .home-title { color: var(--blue); text-shadow: 0 2px 18px rgba(212,125,238,0.4); }
+html[data-theme="lavande"] .home-message { color: var(--plum); }
+html[data-theme="lavande"] .home-message strong { color: var(--pink); }
+html[data-theme="lavande"] .stream-counter { color: var(--blue); }
+html[data-theme="lavande"] .enter-btn {
+  color: var(--white); background: linear-gradient(90deg, var(--lavender), var(--blue));
+  box-shadow: 0 8px 22px rgba(55,83,133,0.3);
+}
+html[data-theme="lavande"] .enter-btn:not(.is-dodging):hover { box-shadow: 0 10px 32px rgba(55,83,133,0.5); }
+html[data-theme="lavande"] .sound-btn { background: rgba(255,255,255,0.8); color: var(--blue); border-color: var(--lavender); }
+html[data-theme="lavande"] .stage {
+  background: #fdfcff; border-color: var(--lavender);
+  box-shadow: 0 18px 50px rgba(63,58,99,0.18), inset 0 0 40px rgba(212,125,238,0.08);
+}
+html[data-theme="lavande"] .stage.is-empty::after { color: var(--ink-soft); }
+html[data-theme="lavande"] .thumb { background: #fdfcff; }
+html[data-theme="lavande"] .thumb.is-active { border-color: var(--blue); box-shadow: 0 0 12px rgba(55,83,133,0.45); }
+html[data-theme="lavande"] .thumb__lock { color: var(--blue); background: radial-gradient(circle at 50% 38%, #efe6fb, #fbe9f2); }
+html[data-theme="lavande"] .thumb.is-locked { border-color: var(--lavender); }
+html[data-theme="lavande"] .artist-card {
+  background: rgba(253,252,255,0.82); border-color: var(--lavender);
+  box-shadow: 0 18px 40px rgba(63,58,99,0.16), 0 0 26px rgba(212,125,238,0.2), inset 0 0 30px rgba(255,255,255,0.4);
+}
+html[data-theme="lavande"] .artist-card__pp { border-color: var(--blue); }
+html[data-theme="lavande"] .artist-card__name { color: var(--blue); }
+html[data-theme="lavande"] .artist-card__link { color: var(--pink); }
+html[data-theme="lavande"] .artist-card__link:hover { color: var(--blue); border-color: var(--pink); }
+
+/* =========================== POP (clair saturé rose/lavande) =========================== */
+html[data-theme="pop"] { --ink: #5b2f47; --ink-soft: #7a4a63; --amber: #c98f3e; }
+
+html[data-theme="pop"] body {
+  color: var(--ink);
+  background: radial-gradient(125% 100% at 50% 0%, #FFF7E0 0%, #FFD0E2 48%, #E3C6FB 100%);
+}
+html[data-theme="pop"] .star {
+  background: radial-gradient(circle, var(--pink), var(--lavender));
+  opacity: 0.55; box-shadow: 0 0 6px rgba(213,66,108,0.5);
+}
+html[data-theme="pop"] .petal { opacity: 0.55; }
+html[data-theme="pop"] .sunflower--hero::before { background: radial-gradient(circle, rgba(213,66,108,0.28), transparent 66%); }
+html[data-theme="pop"] .home-title { color: var(--pink); text-shadow: 0 2px 20px rgba(212,125,238,0.5); }
+html[data-theme="pop"] .home-message { color: var(--plum); }
+html[data-theme="pop"] .home-message strong { color: var(--pink); }
+html[data-theme="pop"] .stream-counter { color: var(--pink); }
+html[data-theme="pop"] .enter-btn {
+  color: var(--white); background: linear-gradient(90deg, var(--pink), var(--lavender));
+  box-shadow: 0 8px 24px rgba(213,66,108,0.4);
+}
+html[data-theme="pop"] .enter-btn:not(.is-dodging):hover { box-shadow: 0 12px 34px rgba(213,66,108,0.6); }
+html[data-theme="pop"] .sound-btn { background: rgba(255,255,255,0.82); color: var(--pink); border-color: var(--pink); }
+html[data-theme="pop"] .stage {
+  background: #fff; border-color: var(--pink);
+  box-shadow: 0 18px 50px rgba(91,47,71,0.2), inset 0 0 40px rgba(213,66,108,0.07);
+}
+html[data-theme="pop"] .stage.is-empty::after { color: var(--ink-soft); }
+html[data-theme="pop"] .thumb { background: #fff; }
+html[data-theme="pop"] .thumb.is-active { border-color: var(--lavender); box-shadow: 0 0 12px rgba(212,125,238,0.55); }
+html[data-theme="pop"] .thumb__lock { color: var(--pink); background: radial-gradient(circle at 50% 38%, #ffe0ee, #ecd6fb); }
+html[data-theme="pop"] .thumb.is-locked { border-color: var(--pink); }
+html[data-theme="pop"] .artist-card {
+  background: rgba(255,255,255,0.82); border-color: var(--pink);
+  box-shadow: 0 18px 40px rgba(91,47,71,0.18), 0 0 28px rgba(213,66,108,0.25), inset 0 0 30px rgba(255,255,255,0.4);
+}
+html[data-theme="pop"] .artist-card__pp { border-color: var(--lavender); }
+html[data-theme="pop"] .artist-card__label { color: var(--pink); }
+html[data-theme="pop"] .artist-card__name { color: var(--plum); }
+html[data-theme="pop"] .artist-card__link { color: var(--lavender); }
+html[data-theme="pop"] .artist-card__link:hover { color: var(--pink); border-color: var(--lavender); }
+
+/* =========================== BONBON (candy lilas/magenta) =========================== */
+html[data-theme="bonbon"] { --ink: #4a2b5e; --ink-soft: #6a4a7e; --amber: #c98f3e; --magenta: #c4267d; }
+
+html[data-theme="bonbon"] body {
+  color: var(--ink);
+  background: radial-gradient(125% 100% at 50% 0%, #FBEEFF 0%, #F6C9EC 50%, #E2B6F7 100%);
+}
+html[data-theme="bonbon"] .star {
+  background: radial-gradient(circle, var(--magenta), var(--lavender));
+  opacity: 0.55; box-shadow: 0 0 6px rgba(196,38,125,0.5);
+}
+html[data-theme="bonbon"] .petal { opacity: 0.5; }
+html[data-theme="bonbon"] .sunflower--hero::before { background: radial-gradient(circle, rgba(212,125,238,0.32), transparent 66%); }
+html[data-theme="bonbon"] .home-title { color: var(--magenta); text-shadow: 0 2px 20px rgba(212,125,238,0.55); }
+html[data-theme="bonbon"] .home-message { color: var(--plum); }
+html[data-theme="bonbon"] .home-message strong { color: var(--magenta); }
+html[data-theme="bonbon"] .stream-counter { color: var(--magenta); }
+html[data-theme="bonbon"] .enter-btn {
+  color: var(--white); background: linear-gradient(90deg, var(--lavender), var(--magenta));
+  box-shadow: 0 8px 24px rgba(196,38,125,0.4);
+}
+html[data-theme="bonbon"] .enter-btn:not(.is-dodging):hover { box-shadow: 0 12px 34px rgba(196,38,125,0.6); }
+html[data-theme="bonbon"] .sound-btn { background: rgba(255,255,255,0.82); color: var(--magenta); border-color: var(--lavender); }
+html[data-theme="bonbon"] .stage {
+  background: #fffdff; border-color: var(--lavender);
+  box-shadow: 0 18px 50px rgba(74,43,94,0.2), inset 0 0 40px rgba(212,125,238,0.09);
+}
+html[data-theme="bonbon"] .stage.is-empty::after { color: var(--ink-soft); }
+html[data-theme="bonbon"] .thumb { background: #fffdff; }
+html[data-theme="bonbon"] .thumb.is-active { border-color: var(--magenta); box-shadow: 0 0 12px rgba(196,38,125,0.5); }
+html[data-theme="bonbon"] .thumb__lock { color: var(--magenta); background: radial-gradient(circle at 50% 38%, #f7d6ef, #e8c7fa); }
+html[data-theme="bonbon"] .thumb.is-locked { border-color: var(--lavender); }
+html[data-theme="bonbon"] .artist-card {
+  background: rgba(255,253,255,0.84); border-color: var(--lavender);
+  box-shadow: 0 18px 40px rgba(74,43,94,0.18), 0 0 28px rgba(212,125,238,0.28), inset 0 0 30px rgba(255,255,255,0.4);
+}
+html[data-theme="bonbon"] .artist-card__pp { border-color: var(--magenta); }
+html[data-theme="bonbon"] .artist-card__label { color: var(--lavender); }
+html[data-theme="bonbon"] .artist-card__name { color: var(--plum); }
+html[data-theme="bonbon"] .artist-card__link { color: var(--magenta); }
+html[data-theme="bonbon"] .artist-card__link:hover { color: var(--plum); border-color: var(--magenta); }
+
+/* =========================== COUCHER (sunset jaune/pêche/rose vif) =========================== */
+html[data-theme="coucher"] { --ink: #6b3550; --ink-soft: #8a5068; --amber: #b9772b; --magenta: #b32d6f; }
+
+html[data-theme="coucher"] body {
+  color: var(--ink);
+  background: radial-gradient(125% 100% at 50% 0%, #FFE6A6 0%, #FFB390 48%, #F58FB0 100%);
+}
+html[data-theme="coucher"] .star {
+  background: radial-gradient(circle, var(--petal), var(--pink));
+  opacity: 0.5; box-shadow: 0 0 6px rgba(255,200,140,0.6);
+}
+html[data-theme="coucher"] .petal { opacity: 0.55; }
+html[data-theme="coucher"] .sunflower--hero::before { background: radial-gradient(circle, rgba(255,200,140,0.45), transparent 64%); }
+html[data-theme="coucher"] .home-title { color: var(--plum); text-shadow: 0 2px 18px rgba(213,66,108,0.45); }
+html[data-theme="coucher"] .home-message { color: var(--ink); }
+html[data-theme="coucher"] .home-message strong { color: var(--magenta); }
+html[data-theme="coucher"] .stream-counter { color: var(--plum); }
+html[data-theme="coucher"] .enter-btn {
+  color: var(--white); background: linear-gradient(90deg, var(--pink), var(--magenta));
+  box-shadow: 0 8px 24px rgba(179,45,111,0.4);
+}
+html[data-theme="coucher"] .enter-btn:not(.is-dodging):hover { box-shadow: 0 12px 34px rgba(179,45,111,0.6); }
+html[data-theme="coucher"] .sound-btn { background: rgba(255,255,255,0.82); color: var(--magenta); border-color: var(--pink); }
+html[data-theme="coucher"] .stage {
+  background: #fffaf3; border-color: var(--pink);
+  box-shadow: 0 18px 50px rgba(107,53,80,0.22), inset 0 0 40px rgba(255,180,150,0.12);
+}
+html[data-theme="coucher"] .stage.is-empty::after { color: var(--ink-soft); }
+html[data-theme="coucher"] .thumb { background: #fffaf3; }
+html[data-theme="coucher"] .thumb.is-active { border-color: var(--magenta); box-shadow: 0 0 12px rgba(179,45,111,0.5); }
+html[data-theme="coucher"] .thumb__lock { color: var(--magenta); background: radial-gradient(circle at 50% 38%, #ffe0bf, #ffc6d6); }
+html[data-theme="coucher"] .thumb.is-locked { border-color: var(--pink); }
+html[data-theme="coucher"] .artist-card {
+  background: rgba(255,250,243,0.86); border-color: var(--pink);
+  box-shadow: 0 18px 40px rgba(107,53,80,0.2), 0 0 28px rgba(255,180,150,0.3), inset 0 0 30px rgba(255,255,255,0.4);
+}
+html[data-theme="coucher"] .artist-card__pp { border-color: var(--magenta); }
+html[data-theme="coucher"] .artist-card__label { color: var(--magenta); }
+html[data-theme="coucher"] .artist-card__name { color: var(--plum); }
+html[data-theme="coucher"] .artist-card__link { color: var(--magenta); }
+html[data-theme="coucher"] .artist-card__link:hover { color: var(--plum); border-color: var(--magenta); }
+
+/* =========================== ALIEN ISOLATION (blague) =========================== */
+/* Motion-tracker : vert radar sur noir, scanlines, balayage. 100% CSS + emoji. */
+html[data-theme="alien"] { --ink: #bff7d0; --ink-soft: #7fc99a; --neon: #5BFF9D; }
+
+html[data-theme="alien"] body {
+  color: var(--ink);
+  background:
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.28) 0 2px, transparent 2px 4px),
+    radial-gradient(circle at 50% 58%, #0b2c1f 0%, #061611 58%, #020806 100%);
+}
+
+/* Balayage radar */
+html[data-theme="alien"] #bgLayer::after {
+  content: "";
+  position: fixed;
+  left: 50%; top: 56%;
+  width: 170vmax; height: 170vmax;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(from 0deg, rgba(91, 255, 157, 0.12), rgba(91, 255, 157, 0.02) 14%, transparent 26%);
+  animation: alien-radar 6s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+@keyframes alien-radar { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+/* Blips radar (étoiles) */
+html[data-theme="alien"] .star {
+  background: var(--neon);
+  opacity: 0.55;
+  box-shadow: 0 0 6px var(--neon), 0 0 12px rgba(91, 255, 157, 0.6);
+}
+/* Spores vertes (pétales qui tombent) */
+html[data-theme="alien"] .petal {
+  background: radial-gradient(circle at 30% 30%, #7CFFB0, #1f6e45);
+  opacity: 0.4;
+}
+/* Les "fleurs" deviennent des aliens qui pleuvent */
+html[data-theme="alien"] .blossom {
+  font-size: var(--bsize, 28px);
+  filter: drop-shadow(0 0 7px rgba(91, 255, 157, 0.55));
+}
+html[data-theme="alien"] .blossom__petal,
+html[data-theme="alien"] .blossom__core { display: none; }
+html[data-theme="alien"] .blossom::before {
+  content: "👽";
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  line-height: 1;
+}
+
+/* Tournesol : halo viré au vert (mais fleur jaune laissée exprès = gag) */
+html[data-theme="alien"] .sunflower--hero::before { background: radial-gradient(circle, rgba(91, 255, 157, 0.25), transparent 66%); }
+
+html[data-theme="alien"] .home-title {
+  color: #d8ffe6;
+  text-shadow: 0 0 18px rgba(91, 255, 157, 0.85), 0 0 40px rgba(91, 255, 157, 0.4);
+  animation: alien-flicker 6s infinite;
+}
+@keyframes alien-flicker {
+  0%, 90%, 100% { opacity: 1; }
+  92% { opacity: 0.35; }
+  94% { opacity: 1; }
+  96% { opacity: 0.6; }
+  98% { opacity: 1; }
+}
+html[data-theme="alien"] .home-message { color: var(--ink-soft); }
+html[data-theme="alien"] .home-message strong { color: var(--neon); }
+html[data-theme="alien"] .stream-counter {
+  color: var(--neon);
+  font-family: "Courier New", monospace;
+  letter-spacing: 1px;
+}
+html[data-theme="alien"] .enter-btn {
+  color: var(--neon);
+  background: #0c1f16;
+  border: 1px solid var(--neon);
+  box-shadow: 0 0 16px rgba(91, 255, 157, 0.4);
+}
+html[data-theme="alien"] .enter-btn:not(.is-dodging):hover {
+  box-shadow: 0 0 26px rgba(255, 60, 60, 0.7);
+  border-color: #ff5a5a;
+}
+html[data-theme="alien"] .sound-btn { background: rgba(8, 24, 16, 0.8); color: var(--neon); border-color: var(--neon); }
+html[data-theme="alien"] .stage {
+  background: #04100b; border-color: var(--neon);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.7), inset 0 0 50px rgba(91, 255, 157, 0.12);
+}
+html[data-theme="alien"] .stage.is-empty::after { color: var(--neon); }
+html[data-theme="alien"] .thumb { background: #04100b; }
+html[data-theme="alien"] .thumb.is-active { border-color: var(--neon); box-shadow: 0 0 12px rgba(91, 255, 157, 0.6); }
+html[data-theme="alien"] .thumb__lock { color: var(--neon); background: radial-gradient(circle at 50% 38%, #0b2c1f, #04100b); }
+html[data-theme="alien"] .thumb.is-locked { border-color: var(--neon); }
+html[data-theme="alien"] .artist-card {
+  background: rgba(6, 22, 15, 0.78); border-color: var(--neon);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6), 0 0 26px rgba(91, 255, 157, 0.25), inset 0 0 30px rgba(91, 255, 157, 0.06);
+}
+html[data-theme="alien"] .artist-card__pp { border-color: var(--neon); }
+html[data-theme="alien"] .artist-card__label { color: var(--neon); }
+html[data-theme="alien"] .artist-card__name { color: var(--ink); }
+html[data-theme="alien"] .artist-card__link { color: var(--neon); }
+html[data-theme="alien"] .artist-card__link:hover { color: #ff5a5a; border-color: #ff5a5a; }
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="alien"] #bgLayer::after,
+  html[data-theme="alien"] .home-title { animation: none; }
+}
+
+/* =========================== CARTE « Message des Flowy » par thème =========================== */
+/* Base (nuit) dans style.css. Ici, adaptation aux thèmes clairs + alien. */
+html[data-theme="clair"] .flowy-card {
+  background: rgba(255,255,255,0.8); border-color: var(--lavender);
+  box-shadow: 0 18px 40px rgba(80,60,91,0.16), 0 0 26px rgba(212,125,238,0.18), inset 0 0 30px rgba(255,255,255,0.4);
+}
+html[data-theme="clair"] .flowy-card__title { color: var(--plum); }
+html[data-theme="clair"] .flowy-card__text { color: var(--blue); }
+
+html[data-theme="petale"] .flowy-card {
+  background: rgba(255,253,247,0.85); border-color: var(--petal);
+  box-shadow: 0 18px 40px rgba(120,80,40,0.16), 0 0 26px rgba(239,197,130,0.25), inset 0 0 30px rgba(255,255,255,0.4);
+}
+html[data-theme="petale"] .flowy-card__title { color: var(--plum); }
+html[data-theme="petale"] .flowy-card__text { color: var(--ink); }
+
+html[data-theme="lavande"] .flowy-card {
+  background: rgba(253,252,255,0.82); border-color: var(--lavender);
+  box-shadow: 0 18px 40px rgba(63,58,99,0.16), 0 0 26px rgba(212,125,238,0.2), inset 0 0 30px rgba(255,255,255,0.4);
+}
+html[data-theme="lavande"] .flowy-card__title { color: var(--blue); }
+html[data-theme="lavande"] .flowy-card__text { color: var(--plum); }
+
+html[data-theme="pop"] .flowy-card {
+  background: rgba(255,255,255,0.82); border-color: var(--pink);
+  box-shadow: 0 18px 40px rgba(91,47,71,0.18), 0 0 28px rgba(213,66,108,0.25), inset 0 0 30px rgba(255,255,255,0.4);
+}
+html[data-theme="pop"] .flowy-card__title { color: var(--pink); }
+html[data-theme="pop"] .flowy-card__text { color: var(--plum); }
+
+html[data-theme="bonbon"] .flowy-card {
+  background: rgba(255,253,255,0.84); border-color: var(--lavender);
+  box-shadow: 0 18px 40px rgba(74,43,94,0.18), 0 0 28px rgba(212,125,238,0.28), inset 0 0 30px rgba(255,255,255,0.4);
+}
+html[data-theme="bonbon"] .flowy-card__title { color: var(--magenta); }
+html[data-theme="bonbon"] .flowy-card__text { color: var(--ink); }
+
+html[data-theme="coucher"] .flowy-card {
+  background: rgba(255,250,243,0.86); border-color: var(--pink);
+  box-shadow: 0 18px 40px rgba(107,53,80,0.2), 0 0 28px rgba(255,180,150,0.3), inset 0 0 30px rgba(255,255,255,0.4);
+}
+html[data-theme="coucher"] .flowy-card__title { color: var(--magenta); }
+html[data-theme="coucher"] .flowy-card__text { color: var(--ink); }
+
+html[data-theme="alien"] .flowy-card {
+  background: rgba(6,22,15,0.78); border-color: var(--neon);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.6), 0 0 26px rgba(91,255,157,0.25), inset 0 0 30px rgba(91,255,157,0.06);
+}
+html[data-theme="alien"] .flowy-card__title { color: var(--neon); }
+html[data-theme="alien"] .flowy-card__text { color: var(--ink); }

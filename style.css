@@ -73,6 +73,48 @@ body {
   100% { transform: translateY(110vh) rotate(420deg); opacity: 0; }
 }
 
+/* ---- Fleurs (5 pétales + cœur) qui dérivent en fond, en plus des pétales ---- */
+.blossom {
+  position: absolute;
+  top: -60px;
+  width: var(--bsize, 28px);
+  height: var(--bsize, 28px);
+  opacity: 0;
+  animation: blossom-fall var(--dur, 18s) linear infinite;
+  animation-delay: var(--delay, 0s);
+  will-change: transform, opacity;
+  filter: drop-shadow(0 2px 3px rgba(80, 60, 91, 0.18));
+}
+.blossom__petal {
+  position: absolute;
+  left: 28%; top: 2%;
+  width: 44%; height: 48%;
+  border-radius: 50% 50% 46% 46% / 60% 60% 40% 40%;
+  transform-origin: 50% 100%;
+  transform: rotate(var(--pa));
+  opacity: 0.92;
+  background: var(--petal);
+}
+.blossom__core {
+  position: absolute;
+  left: 38%; top: 38%;
+  width: 24%; height: 24%;
+  border-radius: 50%;
+  background: var(--petal);
+  box-shadow: 0 0 4px rgba(239, 197, 130, 0.85);
+}
+.blossom--a .blossom__petal { background: var(--pink); }
+.blossom--b .blossom__petal { background: var(--lavender); }
+.blossom--c .blossom__petal { background: var(--petal); }
+.blossom--c .blossom__core { background: var(--pink); box-shadow: 0 0 4px rgba(213, 66, 108, 0.7); }
+
+@keyframes blossom-fall {
+  0%   { transform: translateY(-12vh) rotate(0deg);   opacity: 0; }
+  12%  { opacity: 0.78; }
+  88%  { opacity: 0.78; }
+  100% { transform: translateY(112vh) rotate(360deg); opacity: 0; }
+}
+
 /* ---- Tournesol CSS ---- */
 .sunflower {
   position: relative;
@@ -437,6 +479,66 @@ body {
 .artist-card__link:hover { color: var(--white); border-color: var(--petal); }
 .artist-card__link:focus-visible { outline: 2px solid var(--petal); outline-offset: 3px; }
 
+/* ---- Colonne droite (message des Flowy + artiste) ---- */
+.side-col {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  margin-bottom: 24px;
+}
+
+/* ---- Encadré « Message des Flowy » ---- */
+.flowy-card {
+  position: relative;
+  width: 240px;
+  padding: 26px 22px;
+  text-align: center;
+  background: rgba(80, 60, 91, 0.4);
+  border: 1px solid var(--petal);
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.5), 0 0 28px rgba(239,197,130,0.22), inset 0 0 30px rgba(239,197,130,0.07);
+  backdrop-filter: blur(7px);
+  transform: rotate(-2deg);
+  transition: transform 0.45s ease;
+}
+.flowy-card:hover { transform: rotate(0deg); }
+.flowy-card__title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.3px;
+  color: var(--petal);
+  margin-bottom: 12px;
+}
+.flowy-card__text {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: rgba(254, 254, 254, 0.9);
+}
+.flowy-card__emote {
+  display: inline-block;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  margin-left: 4px;
+}
+
+/* Fleurs décoratives encadrant la carte : même type que les fleurs du fond,
+   mais statiques (pas d'animation), posées dans les coins. */
+.deco-bloom {
+  top: auto;
+  left: auto;
+  opacity: 1;
+  animation: none;
+  pointer-events: none;
+}
+.fd--1 { top: -16px;    left: -14px;  --bsize: 34px; transform: rotate(-10deg); }
+.fd--2 { top: -12px;    right: -12px; --bsize: 26px; transform: rotate(14deg); }
+.fd--3 { bottom: -14px; right: -14px; --bsize: 30px; transform: rotate(8deg); }
+.fd--4 { bottom: -10px; left: -12px;  --bsize: 24px; transform: rotate(-18deg); }
+
 /* ---- Transition Accueil -> Showcase ---- */
 .screen--home.is-leaving {
   animation: home-leave var(--transition-screen) ease forwards;
@@ -523,13 +625,21 @@ body {
   .stage { height: 58vh; transform: none; }
   .stage:hover { transform: none; }
   /* En empilé : carte sous l'illustration, sans rotation */
-  .artist-card {
+  .side-col {
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 0;
+    gap: 22px;
+  }
+  .artist-card,
+  .flowy-card {
     width: 100%;
     max-width: 320px;
     margin-bottom: 0;
     transform: none;
   }
-  .artist-card:hover { transform: none; }
+  .artist-card:hover,
+  .flowy-card:hover { transform: none; }
 }
 
 @media (max-width: 480px) {
@@ -544,4 +654,6 @@ body {
   .sunflower--hero::before,
   .sunflower--hero .sunflower__petals { animation: none !important; }
   .petal { display: none; }
+  /* Fleurs qui tombent masquées ; fleurs déco de la carte conservées (statiques) */
+  .blossom:not(.deco-bloom) { display: none; }
 }

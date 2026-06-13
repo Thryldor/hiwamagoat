@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="pop">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <!-- Thèmes : appliqué via data-theme sur <html>. themes.css archive les 8 thèmes. -->
+  <link rel="stylesheet" href="themes.css" />
 </head>
 <body>
   <!-- Étoiles + pétales en fond (remplis par JS) -->
@@ -29,7 +31,7 @@
         <div class="sunflower__core"></div>
       </div>
       <p class="stream-counter" id="streamCounter" aria-live="off"></p>
-      <h1 class="home-title">Hiwamari</h1>
+      <h1 class="home-title" id="homeTitle">Hiwamari</h1>
       <p class="home-message">Shadow Garden et les flowy te souhaitent un bon retour !</p>
       <button class="enter-btn" id="enterBtn">Entrer</button>
     </div>
@@ -47,12 +49,19 @@
         <div class="thumbs" id="thumbs" aria-label="Choisir une illustration"></div>
       </div>
 
-      <aside class="artist-card" id="artistCard">
-        <img class="artist-card__pp" id="artistPp" src="" alt="Photo de profil de l'artiste" />
-        <p class="artist-card__label">illustration par</p>
-        <p class="artist-card__name" id="artistName"></p>
-        <a class="artist-card__link" id="artistTwitter" href="#" target="_blank" rel="noopener noreferrer"></a>
-      </aside>
+      <div class="side-col">
+        <aside class="flowy-card" id="flowyCard">
+          <p class="flowy-card__title">Message des Flowy</p>
+          <p class="flowy-card__text">Mana a vu mawi toute nue. <img class="flowy-card__emote" id="flowyEmote" src="" alt="" /><br>Ceci est un message temporaire</p>
+        </aside>
+
+        <aside class="artist-card" id="artistCard">
+          <img class="artist-card__pp" id="artistPp" src="" alt="Photo de profil de l'artiste" />
+          <p class="artist-card__label">illustration par</p>
+          <p class="artist-card__name" id="artistName"></p>
+          <a class="artist-card__link" id="artistTwitter" href="#" target="_blank" rel="noopener noreferrer"></a>
+        </aside>
+      </div>
     </div>
   </section>
 
