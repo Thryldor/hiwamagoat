@@ -52,8 +52,8 @@ html[data-theme="clair"] .artist-card {
 }
 html[data-theme="clair"] .artist-card__pp { border-color: var(--pink); }
 html[data-theme="clair"] .artist-card__name { color: var(--plum); }
-html[data-theme="clair"] .artist-card__link { color: var(--pink); }
-html[data-theme="clair"] .artist-card__link:hover { color: var(--plum); border-color: var(--pink); }
+html[data-theme="clair"] .social-btn { color: var(--pink); }
+html[data-theme="clair"] .social-btn:hover { color: var(--plum); border-color: var(--pink); }
 
 /* =========================== PÉTALE (soleil) =========================== */
 html[data-theme="petale"] { --ink: #5b3a52; --ink-soft: #7a5a4a; --amber: #b9772b; }
@@ -94,8 +94,8 @@ html[data-theme="petale"] .artist-card {
 html[data-theme="petale"] .artist-card__pp { border-color: var(--pink); }
 html[data-theme="petale"] .artist-card__label { color: var(--amber); }
 html[data-theme="petale"] .artist-card__name { color: var(--plum); }
-html[data-theme="petale"] .artist-card__link { color: var(--pink); }
-html[data-theme="petale"] .artist-card__link:hover { color: var(--plum); border-color: var(--pink); }
+html[data-theme="petale"] .social-btn { color: var(--pink); }
+html[data-theme="petale"] .social-btn:hover { color: var(--plum); border-color: var(--pink); }
 
 /* =========================== LAVANDE (brume) =========================== */
 html[data-theme="lavande"] { --ink: #3f3a63; --ink-soft: #5f5a7a; --amber: #c98f3e; }
@@ -135,8 +135,8 @@ html[data-theme="lavande"] .artist-card {
 }
 html[data-theme="lavande"] .artist-card__pp { border-color: var(--blue); }
 html[data-theme="lavande"] .artist-card__name { color: var(--blue); }
-html[data-theme="lavande"] .artist-card__link { color: var(--pink); }
-html[data-theme="lavande"] .artist-card__link:hover { color: var(--blue); border-color: var(--pink); }
+html[data-theme="lavande"] .social-btn { color: var(--pink); }
+html[data-theme="lavande"] .social-btn:hover { color: var(--blue); border-color: var(--pink); }
 
 /* =========================== POP (clair saturé rose/lavande) =========================== */
 html[data-theme="pop"] { --ink: #5b2f47; --ink-soft: #7a4a63; --amber: #c98f3e; }
@@ -177,8 +177,8 @@ html[data-theme="pop"] .artist-card {
 html[data-theme="pop"] .artist-card__pp { border-color: var(--lavender); }
 html[data-theme="pop"] .artist-card__label { color: var(--pink); }
 html[data-theme="pop"] .artist-card__name { color: var(--plum); }
-html[data-theme="pop"] .artist-card__link { color: var(--lavender); }
-html[data-theme="pop"] .artist-card__link:hover { color: var(--pink); border-color: var(--lavender); }
+html[data-theme="pop"] .social-btn { color: var(--lavender); }
+html[data-theme="pop"] .social-btn:hover { color: var(--pink); border-color: var(--lavender); }
 
 /* =========================== BONBON (candy lilas/magenta) =========================== */
 html[data-theme="bonbon"] { --ink: #4a2b5e; --ink-soft: #6a4a7e; --amber: #c98f3e; --magenta: #c4267d; }
@@ -219,8 +219,8 @@ html[data-theme="bonbon"] .artist-card {
 html[data-theme="bonbon"] .artist-card__pp { border-color: var(--magenta); }
 html[data-theme="bonbon"] .artist-card__label { color: var(--lavender); }
 html[data-theme="bonbon"] .artist-card__name { color: var(--plum); }
-html[data-theme="bonbon"] .artist-card__link { color: var(--magenta); }
-html[data-theme="bonbon"] .artist-card__link:hover { color: var(--plum); border-color: var(--magenta); }
+html[data-theme="bonbon"] .social-btn { color: var(--magenta); }
+html[data-theme="bonbon"] .social-btn:hover { color: var(--plum); border-color: var(--magenta); }
 
 /* =========================== COUCHER (sunset jaune/pêche/rose vif) =========================== */
 html[data-theme="coucher"] { --ink: #6b3550; --ink-soft: #8a5068; --amber: #b9772b; --magenta: #b32d6f; }
@@ -261,8 +261,8 @@ html[data-theme="coucher"] .artist-card {
 html[data-theme="coucher"] .artist-card__pp { border-color: var(--magenta); }
 html[data-theme="coucher"] .artist-card__label { color: var(--magenta); }
 html[data-theme="coucher"] .artist-card__name { color: var(--plum); }
-html[data-theme="coucher"] .artist-card__link { color: var(--magenta); }
-html[data-theme="coucher"] .artist-card__link:hover { color: var(--plum); border-color: var(--magenta); }
+html[data-theme="coucher"] .social-btn { color: var(--magenta); }
+html[data-theme="coucher"] .social-btn:hover { color: var(--plum); border-color: var(--magenta); }
 
 /* =========================== ALIEN ISOLATION (blague) =========================== */
 /* Motion-tracker : vert radar sur noir, scanlines, balayage. 100% CSS + emoji. */
@@ -363,8 +363,8 @@ html[data-theme="alien"] .artist-card {
 html[data-theme="alien"] .artist-card__pp { border-color: var(--neon); }
 html[data-theme="alien"] .artist-card__label { color: var(--neon); }
 html[data-theme="alien"] .artist-card__name { color: var(--ink); }
-html[data-theme="alien"] .artist-card__link { color: var(--neon); }
-html[data-theme="alien"] .artist-card__link:hover { color: #ff5a5a; border-color: #ff5a5a; }
+html[data-theme="alien"] .social-btn { color: var(--neon); }
+html[data-theme="alien"] .social-btn:hover { color: #ff5a5a; border-color: #ff5a5a; }
 
 @media (prefers-reduced-motion: reduce) {
   html[data-theme="alien"] #bgLayer::after,

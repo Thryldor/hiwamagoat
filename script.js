@@ -3,17 +3,18 @@
    ========================================================================= */
 const CONFIG = {
   illustrations: [
-    { src: "assets/yoclesh_1.jpg", alt: "Illustration 1 de Hiwamari" },
-    { src: "assets/yoclesh_2.jpg", alt: "Illustration 2 de Hiwamari" },
+    { src: "assets/illu_1.png", alt: "Illustration 1 de Hiwamari" },
+    { src: "assets/illu_2.png", alt: "Illustration 2 de Hiwamari" },
   ],
   artiste: {
-    photo: "assets/yoclesh.jpg",
-    nom: "Yoclesh",
-    twitter: "https://x.com/yoclesh",
-    twitterTexte: "@yoclesh",
+    photo: "assets/nexemesis.jpg",
+    nom: "Nexemesis",
+    message: "Bon retour Mari ! Ta communauté est géniale, chéris les à tout jamais ces gros trolls !",
+    twitter: "https://x.com/nexemesis",
+    vgen: "https://vgen.co/nexemesis",
   },
   // Pseudos qui défilent sur l'accueil (le 1er est le pseudo principal)
-  alias: ["Hiwamari", "Mawi", "Mowi", "Pwincess des fleurs", "HiwaMaStar", "HiwaMarmotte", "HiwamaForceuse"],
+  alias: ["Hiwamari", "Mawi", "Mowi", "Pwincess des fleurs", "HiwaMaStar", "HiwaMarmotte", "HiwamaForceuse", "HiwamaFit", "HiwamaGoat"],
   musique: "assets/shadow.mp3",
   // Date/heure du dernier stream (heure locale) — pour le compteur sur l'accueil
   dernierStream: "2026-05-27T20:33:00",
@@ -21,6 +22,7 @@ const CONFIG = {
   emotes: {
     haha: "assets/hiwamaHaha.webp",     // 1ʳᵉ esquive
     sideye: "assets/hiwamaSideye.webp", // dernière esquive
+    noo: "assets/hiwamaNoo.webp",       // message des Flowy
   },
 };
 
@@ -262,17 +264,35 @@ function populateArtist() {
   pp.src = CONFIG.artiste.photo;
   pp.alt = `Photo de profil de ${CONFIG.artiste.nom}`;
   $("#artistName").textContent = CONFIG.artiste.nom;
-  const link = $("#artistTwitter");
-  link.href = CONFIG.artiste.twitter;
-  link.textContent = CONFIG.artiste.twitterTexte;
 
-  // Emote du message des Flowy (sideye)
-  const flowyEmote = $("#flowyEmote");
-  if (flowyEmote && CONFIG.emotes && CONFIG.emotes.sideye) {
-    flowyEmote.addEventListener("error", () => { flowyEmote.style.display = "none"; }, { once: true });
-    flowyEmote.src = CONFIG.emotes.sideye;
-    flowyEmote.alt = "sideye";
+  // Message de l'artiste (masqué si absent)
+  const msg = $("#artistMessage");
+  if (msg) {
+    if (CONFIG.artiste.message) msg.textContent = CONFIG.artiste.message;
+    else msg.style.display = "none";
   }
+
+  // Liens sociaux : X + VGen (masqués si absents)
+  const setSocial = (id, url) => {
+    const el = $(id);
+    if (!el) return;
+    if (url) el.href = url;
+    else el.style.display = "none";
+  };
+  setSocial("#artistTwitter", CONFIG.artiste.twitter);
+  setSocial("#artistVgen", CONFIG.artiste.vgen);
+
+  // Emotes du message des Flowy (noo + sideye)
+  const setFlowyEmote = (sel, key) => {
+    const el = $(sel);
+    if (el && CONFIG.emotes && CONFIG.emotes[key]) {
+      el.addEventListener("error", () => { el.style.display = "none"; }, { once: true });
+      el.src = CONFIG.emotes[key];
+      el.alt = key;
+    }
+  };
+  setFlowyEmote("#flowyEmoteNoo", "noo");
+  setFlowyEmote("#flowyEmote", "sideye");
 }
 
 /* Fleurs décoratives (même type que le fond) encadrant la carte « Message des Flowy » */
@@ -431,8 +451,14 @@ function updateStreamCounter() {
   const h = Math.floor(s / 3600);  s -= h * 3600;
   const m = Math.floor(s / 60);    s -= m * 60;
   const p = (n, mot) => `${n} ${mot}${n > 1 ? "s" : ""}`;
-  streamCounter.textContent =
-    `Ça fait ${p(j, "jour")}, ${p(h, "heure")}, ${p(m, "minute")} et ${p(s, "seconde")} que tu n'as pas stream`;
+  // Garde uniquement les unités non nulles ; si tout est à 0, affiche « 0 seconde »
+  const parts = [[j, "jour"], [h, "heure"], [m, "minute"], [s, "seconde"]]
+    .filter(([n]) => n > 0)
+    .map(([n, mot]) => p(n, mot));
+  if (!parts.length) parts.push(p(0, "seconde"));
+  const last2 = parts.length > 1 ? parts.slice(-2).join(" et ") : parts[0];
+  const duree = parts.length > 2 ? parts.slice(0, -2).join(", ") + ", " + last2 : last2;
+  streamCounter.textContent = `Ça fait ${duree} que tu n'as pas stream`;
 }
 updateStreamCounter();
 setInterval(updateStreamCounter, 1000);
