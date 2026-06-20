@@ -350,6 +350,43 @@ function unlockThumb(i) {
   btn.setAttribute("aria-label", `Illustration ${i + 1}`);
 }
 
+/* ---- Message des Flowy : 2 parties, change selon l'illustration ---- */
+const flowyText = $("#flowyText");
+let flowyPart = 1;
+let flowyAnim = null;
+let flowyTimer = null;
+const FLOWY_SWAP = 460;
+
+// part = 1 (accueil) ou 2 (« mais ... », à la 2ᵉ illu). Crossfade dans l'encadré.
+function setFlowyPart(part) {
+  if (!flowyText || part === flowyPart) return;
+  flowyPart = part;
+  const swap = () => {
+    flowyText.querySelectorAll(".flowy-part").forEach((el) => {
+      el.classList.toggle("is-active", Number(el.dataset.part) === part);
+    });
+  };
+
+  if (prefersReducedMotion || !flowyText.animate) { swap(); return; }
+
+  if (flowyAnim) flowyAnim.cancel();
+  if (flowyTimer) clearTimeout(flowyTimer);
+
+  // Fond-enchaîné : le texte s'efface, change au creux (invisible, donc la
+  // hauteur de l'encadré se réajuste sans à-coup), puis réapparaît.
+  flowyAnim = flowyText.animate(
+    [
+      { opacity: 1, filter: "blur(0px)", transform: "translateY(0)" },
+      { opacity: 0, filter: "blur(6px)", transform: "translateY(-6px)", offset: 0.45 },
+      { opacity: 0, filter: "blur(6px)", transform: "translateY(6px)",  offset: 0.55 },
+      { opacity: 1, filter: "blur(0px)", transform: "translateY(0)" },
+    ],
+    { duration: FLOWY_SWAP, easing: "cubic-bezier(.5,0,.2,1)" }
+  );
+  flowyTimer = setTimeout(swap, FLOWY_SWAP * 0.5);
+  flowyAnim.finished.then(() => { flowyAnim = null; }).catch(() => {});
+}
+
 let swapAnim = null;
 let swapTimer = null;
 const SWAP_DURATION = 640;
@@ -361,6 +398,9 @@ function showIllu(index, direction = 1) {
   // vignette active + révélée (l'illu est désormais vue)
   [...thumbsWrap.children].forEach((t, i) => t.classList.toggle("is-active", i === currentIndex));
   unlockThumb(currentIndex);
+
+  // 1ʳᵉ illu → message d'accueil ; 2ᵉ illu (et +) → suite « mais ... »
+  setFlowyPart(currentIndex >= 1 ? 2 : 1);
 
   const apply = () => { stageImg.src = data.src; stageImg.alt = data.alt; };
 
